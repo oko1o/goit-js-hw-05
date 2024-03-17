@@ -1,23 +1,57 @@
-const profile = {
-  username: 'Jacob',
-  playTime: 300,
-  getInfo() {
-    return `${this.username} has ${this.playTime} active hours!`;
+// Напиши стрілочну функцію getTotalBalanceByGender(users, gender), яка прийматиме два параметра:
+
+// перший параметр users — масив об’єктів користувачів,
+// другий параметр gender — рядок, що зберігає стать.
+
+// Функція має використовувати ланцюжок виклику методів та повертати загальний баланс користувачів (властивість balance), стать яких (властивість gender) збігається зі значенням параметра gender.
+
+// Візьми код нижче і встав після оголошення своєї функції для перевірки коректності її роботи. У консоль будуть виведені результати її роботи.
+
+const clients = [
+  {
+    name: "Moore Hensley",
+    gender: "male",
+    balance: 2811
   },
-  changeUsername(newName) {
-    this.username = newName;
+  {
+    name: "Sharlene Bush",
+    gender: "female",
+    balance: 3821
   },
-  updatePlayTime(time) {
-    this.playTime += time;
+  {
+    name: "Ross Vazquez",
+    gender: "male",
+    balance: 3793
+  },
+  {
+    name: "Elma Head",
+    gender: "female",
+    balance: 2278
+  },
+  {
+    name: "Carey Barr",
+    gender: "male",
+    balance: 3951
+  },
+  {
+    name: "Blackburn Dotson",
+    gender: "male",
+    balance: 1498
+  },
+  {
+    name: "Sheree Anthony",
+    gender: "female",
+    balance: 2764
   }
-};
+];
 
+const getTotalBalanceByGender = (users, gender) => {
 
+  return users
+  .filter(client => client.gender === gender)
+  .reduce((sum, user) => sum + user.balance, 0);
+}
 
-console.log(profile.getInfo()); // "Jacob has 300 active hours!"
+console.log(getTotalBalanceByGender(clients, "male")); // 12053
 
-profile.changeUsername('Marco');
-console.log(profile.getInfo()); // "Marco has 300 active hours!"
-
-profile.updatePlayTime(20);
-console.log(profile.getInfo()); // "Marco has 320 active hours!"
+console.log(getTotalBalanceByGender(clients, "female")); // 8863
